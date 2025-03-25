@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="google" value="notranslate">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Attention</title>
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body class="en ltr">
+
+  <img src="loaded.png" alt="" class="content-load">
+  
+  <section class="content">
+    <div class="content-container">
+      <div class="content-wrapper">
+        <div class="popup" id="popup">
+          <h3 class="content-title blink">
+            <span>Only 18+ allowed.</span><br>
+		<p></p>
+            <span>Are you in?</span><br>
+            <span class="text_warn"><span id="minute">3</span> minutes <span id="second">59</span> seconds</span>                      
+          </h3>
+
+          <div class="content-download">
+            <a rel="noreferrer noopener" href="#" class="btn blink mainButton">CONTINUE</a>
+          </div>
+        </div>
+      </div>
+      <div class="content-panel">
+        <img src="panel.jpg" alt="panel">
+      </div>
+    </div>
+  </section>
+
+
+  <script> 
+  let minElement = document.getElementById("minute");
+  let secElement = document.getElementById("second");
+
+  function countdown(minutes) {
+    let seconds = 60;
+    let mins = minutes;
+
+    function tick() {
+      seconds--;
+      minElement.innerHTML = minutes;
+      secElement.innerHTML = seconds;
+      if (seconds > 0) {
+        setTimeout(tick, 1000);
+      } else {
+        if (mins > 1) {
+          countdown(mins - 1);
+        }
+      }
+    }
+    tick();
+  }
+
+  if (minElement && secElement) {
+    countdown(+minElement.innerHTML);
+  }
+  </script>
+
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+      $(".btn").click(function(){
+        const urlParams = new URLSearchParams(window.location.search);
+        const click_id = urlParams.get('click_id');
+        var url_arg = "&click_id="+click_id;
+        if(urlParams.has('source_id')){
+            const source_id = urlParams.get('source_id');
+            url_arg = url_arg+"&si1="+source_id;
+        }
+        
+       window.location.href = "https://pomowl.com/1145816-1?h=waWQiOjExNzkxMTMsInNpZCI6MTQyNjU1NCwid2lkIjo2OTU0ODAsInNyYyI6Mn0=eyJ"+url_arg;
+      });
+   
+</script>
+  <script src="script.js"></script>
+
+
+</body>
+</html>
