@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Age Verification</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Global Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: linear-gradient(135deg, #141e1e, #3a3a3a);
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      color: #fff;
+    }
+    .download-container {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+    .download-container h1 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+    .download-container p {
+      font-size: 1rem;
+      margin-bottom: 20px;
+      color: #ccc;
+    }
+    .countdown-circle {
+      margin: 20px auto;
+      width: 120px;
+      height: 120px;
+      position: relative;
+    }
+    svg {
+      width: 120px;
+      height: 120px;
+    }
+    #timerText {
+      font-size: 32px;
+      font-weight: 700;
+      fill: #fff;
+    }
+    #downloadButton {
+      margin-top: 20px;
+      background: #4caf50;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      color: #fff;
+      border-radius: 5px;
+      cursor: not-allowed;
+      opacity: 0.6;
+      transition: opacity 0.3s;
+    }
+    /* Error Message Styling */
+    .error-message {
+      margin-top: 20px;
+      font-size: 1rem;
+      color: #ff6b6b;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="download-container">
+    <h1>Age Verification..</h1>
+    <div class="countdown-circle">
+      <svg id="countdownSVG" width="120" height="120">
+        <!-- Background circle -->
+        <circle cx="60" cy="60" r="50" stroke="#444" stroke-width="10" fill="none" />
+        <!-- Progress circle -->
+        <circle id="progressCircle" cx="60" cy="60" r="50" stroke="#4caf50" stroke-width="10" fill="none"
+                stroke-dasharray="314" stroke-dashoffset="314" transform="rotate(-90 60 60)"/>
+        <!-- Timer text -->
+        <text id="timerText" x="60" y="70" text-anchor="middle">5</text>
+      </svg>
+    </div>
+<div class="error-message" id="errorMessage">
+    <p>Click on "Continue Here" below only if you're 18+..</p>
+    <div class="cta_btn">
+    <a rel="noreferrer noopener" href="#" style="font-size: 32px; font-family: Calibri; color: MediumSeaGreen; text-decoration:none;">CONTINUE HERE</a>
+    </div>
+  </div>
+
+  <script>
+    const totalTime = 5; // seconds
+    let timeLeft = totalTime;
+    const timerText = document.getElementById('timerText');
+    const progressCircle = document.getElementById('progressCircle');
+    const downloadButton = document.getElementById('downloadButton');
+    const errorMessage = document.getElementById('errorMessage');
+    const circumference = 2 * Math.PI * 50; // For a circle of radius 50
+
+    progressCircle.style.strokeDasharray = circumference;
+    progressCircle.style.strokeDashoffset = circumference;
+    
+    function updateProgress() {
+      const progress = ((totalTime - timeLeft) / totalTime);
+      const offset = circumference * (1 - progress);
+      progressCircle.style.strokeDashoffset = offset;
+      timerText.textContent = timeLeft;
+    }
+    
+    updateProgress();
+    
+    const interval = setInterval(() => {
+      timeLeft--;
+      if (timeLeft < 0) {
+        clearInterval(interval);
+        timerText.textContent = "0";
+        progressCircle.style.strokeDashoffset = 0;
+        // Keep the download button disabled and show error message
+        errorMessage.style.display = 'block';
+      } else {
+        updateProgress();
+      }
+    }, 1000);
+  </script>
+
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+      $(".cta_btn").click(function(){
+        const urlParams = new URLSearchParams(window.location.search);
+        const click_id = urlParams.get('click_id');
+        var url_arg = "&click_id="+click_id;
+        if(urlParams.has('source_id')){
+            const source_id = urlParams.get('source_id');
+            url_arg = url_arg+"&si1="+source_id;
+        }
+        
+       window.location.href = "https://pteger.com/play-2_1?h=waWQiOjExNzkxMTMsInNpZCI6MTQyNjU1NCwid2lkIjo2OTU0ODAsInNyYyI6Mn0=eyJ"+url_arg;
+      });
+   
+</script>
+  <script src="script.js"></script>
+
+</body>
+</html>
